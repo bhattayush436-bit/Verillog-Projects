@@ -62,8 +62,7 @@ B = 4'b1111;
 sel = 4'b1111;
 end
 initial begin
-    $monitor("t=%0t A=%b B=%b sel=%b result=%b carry=%b borrow=%b",
-             $time,A,B,sel,result,carry,borrow);
+    $monitor("t=%0t A=%b B=%b sel=%b result=%b carry=%b borrow=%b",$time,A,B,sel,result,carry,borrow);
 end
 initial begin
 #200;
