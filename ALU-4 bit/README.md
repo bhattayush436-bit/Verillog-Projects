@@ -103,7 +103,7 @@ The waveform verifies correct operation for all 16 ALU functions.
 ```
 ALU_4bit/
 │── ALU_4_bit.v
-│── ALU-4-bit-tb.v
+│── ALU-4_bit_tb.v
 │── waveform_ALU_4_bit.png
 │── README.md
 ```
