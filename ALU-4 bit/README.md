@@ -1,179 +1,147 @@
-# 4-Bit ALU in Verilog HDL
+# 4-Bit ALU (Arithmetic Logic Unit) using Verilog
 
-## Overview
+## 📌 Overview
 
-This project implements a **4-Bit Arithmetic Logic Unit (ALU)** using **Verilog HDL**. The ALU performs arithmetic, logical, comparison, and data transfer operations based on a 4-bit select input. The design also generates **Carry** and **Borrow** flags for arithmetic operations.
+This project implements a **4-bit Arithmetic Logic Unit (ALU)** in Verilog HDL. The ALU performs both arithmetic and logical operations based on a 4-bit select signal (`sel`). It is designed as a **combinational circuit** using an `always @(*)` block.
 
-The project was simulated and verified using **Xilinx Vivado**.
-
----
-
-## Features
-
-* 16 ALU Operations
-* Arithmetic Operations
-
-  * Addition
-  * Subtraction
-  * Increment
-  * Decrement
-* Logical Operations
-
-  * AND
-  * OR
-  * XOR
-  * XNOR
-  * NAND
-  * NOR
-  * NOT
-* Comparison Operations
-
-  * Equal To
-  * Less Than
-  * Greater Than
-* Data Transfer Operations
-
-  * PASS A
-  * PASS B
-* Carry and Borrow Flag Generation
+This project demonstrates fundamental RTL design concepts including arithmetic operations, logical operations, comparison operations, shift operations, and flag generation.
 
 ---
 
-## Module Interface
+## ✨ Features
 
-### Inputs
+- 16 ALU Operations
+- 4-bit Data Width
+- Combinational Logic Design
+- Carry Flag Generation
+- Borrow Flag Generation
+- Shift Operations
+- Comparison Operations
 
-| Signal | Width | Description      |
-| ------ | ----- | ---------------- |
-| A      | 4-bit | Operand A        |
-| B      | 4-bit | Operand B        |
-| sel    | 4-bit | Operation Select |
+---
 
-### Outputs
+## 📂 Inputs
 
 | Signal | Width | Description |
-| ------ | ----- | ----------- |
-| result | 4-bit | ALU Output  |
-| carry  | 1-bit | Carry Flag  |
-| borrow | 1-bit | Borrow Flag |
+|---------|------:|-------------|
+| A | 4-bit | First Operand |
+| B | 4-bit | Second Operand |
+| sel | 4-bit | Operation Select |
 
 ---
 
-## Opcode Table
+## 📂 Outputs
 
-| Select | Operation   |
-| ------ | ----------- |
-| 0000   | A AND B     |
-| 0001   | A OR B      |
-| 0010   | A XOR B     |
-| 0011   | A XNOR B    |
-| 0100   | A NAND B    |
-| 0101   | PASS A      |
-| 0110   | PASS B      |
-| 0111   | NOT A       |
-| 1000   | A == B      |
-| 1001   | A < B       |
-| 1010   | A > B       |
-| 1011   | Increment A |
-| 1100   | Decrement A |
-| 1101   | A NOR B     |
-| 1110   | A - B       |
-| 1111   | A + B       |
+| Signal | Width | Description |
+|---------|------:|-------------|
+| result | 4-bit | ALU Output |
+| carry | 1-bit | Carry Flag (Addition/Increment) |
+| borrow | 1-bit | Borrow Flag (Subtraction/Decrement) |
 
 ---
 
-## Carry and Borrow Logic
+## ⚙️ Supported Operations
+
+| Select | Operation |
+|:------:|-----------|
+| 0000 | Bitwise AND |
+| 0001 | Bitwise OR |
+| 0010 | Bitwise XOR |
+| 0011 | Bitwise XNOR |
+| 0100 | Bitwise NAND |
+| 0101 | Logical Right Shift (A >> 1) |
+| 0110 | Logical Left Shift (A << 1) |
+| 0111 | Bitwise NOT (A) |
+| 1000 | Equality Comparison (A == B) |
+| 1001 | Less Than Comparison (A < B) |
+| 1010 | Greater Than Comparison (A > B) |
+| 1011 | Increment (A + 1) |
+| 1100 | Decrement (A - 1) |
+| 1101 | Bitwise NOR |
+| 1110 | Subtraction (A - B) |
+| 1111 | Addition (A + B) |
+
+---
+
+## 🛠️ Design Details
+
+- Language: **Verilog HDL**
+- Design Style: **RTL (Register Transfer Level)**
+- Logic Type: **Combinational**
+- Sensitivity List: `always @(*)`
+
+---
+
+## 📊 Flags
 
 ### Carry Flag
-
-The carry flag is generated during:
-
-* Addition
-* Increment
-
-Example:
-
-A = 1111
-B = 0001
-
-Result = 0000
-Carry = 1
-
----
+Generated during:
+- Addition
+- Increment
 
 ### Borrow Flag
-
-The borrow flag is generated during:
-
-* Subtraction when A < B
-* Decrement when A = 0000
-
-Example:
-
-A = 0010
-B = 0100
-
-Result = 1110
-Borrow = 1
+Generated during:
+- Subtraction
+- Decrement
 
 ---
 
-## Simulation
+## 📸 Simulation
 
-The design was verified using a dedicated Verilog testbench covering:
+The design can be simulated using:
 
-* All 16 ALU operations
-* Carry generation
-* Borrow generation
-* Arithmetic operations
-* Logical operations
-* Comparison operations
-* Increment and decrement operations
+- Xilinx Vivado
+- ModelSim
+- Icarus Verilog
 
-Simulation Tool:
-
-* Xilinx Vivado
+The waveform verifies correct operation for all 16 ALU functions.
 
 ---
 
-## Project Structure
+## 📁 Project Structure
 
-```text
-ALU-4 bit
-│
-├── ALU-4_bit.v
-├── ALU-4_bit_tb.v
-├── waveform_ALU-4_bit.png
-└── README.md
+```
+ALU_4bit/
+│── ALU_4_bit.v
+│── ALU-4-bit-tb.v
+│── waveform_ALU_4_bit.png
+│── README.md
 ```
 
 ---
 
-## Applications
+## 🎯 Learning Outcomes
 
-* Processor Datapaths
-* Digital Signal Processing
-* Embedded Systems
-* FPGA-Based Designs
-* Computer Architecture Learning
+This project demonstrates understanding of:
 
----
-
-## Future Improvements
-
-* Parameterized ALU Width
-* Zero Flag Generation
-* Overflow Flag Generation
-* Shift Operations
-* Rotate Operations
-* Signed Arithmetic Support
+- RTL Design
+- Combinational Logic
+- Arithmetic Circuits
+- Logical Operations
+- Shift Operations
+- Comparison Logic
+- Carry and Borrow Flag Generation
+- Verilog HDL Coding
 
 ---
 
-## Author
+## 🚀 Future Improvements
 
-Ayush Bhatt
+- 8-bit / 16-bit Parameterized ALU
+- Overflow Flag
+- Zero Flag
+- Sign Flag
+- Arithmetic Right Shift
+- Rotate Left / Rotate Right Operations
+- Barrel Shifter
+- Signed Arithmetic Support
 
-B.Tech Electronics and Communication Engineering (ECE)
+---
 
-Interested in RTL Design, Digital Design, and VLSI Front-End Engineering.
+## 👨‍💻 Author
+
+**Ayush Bhatt**
+
+B.Tech Electronics & Communication Engineering
+
+Aspiring RTL Design / VLSI Front-End Engineer
