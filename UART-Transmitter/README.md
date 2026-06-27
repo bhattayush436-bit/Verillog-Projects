@@ -149,19 +149,6 @@ Simulation verifies:
 > - Stop Bit
 > - FSM State Transitions
 
-Example:
-
-```
-images/
-└── uart_tx_waveform.png
-```
-
-Then display it in the README:
-
-```markdown
-![UART Waveform](images/uart_tx_waveform.png)
-```
-
 ---
 
 ## 📚 Concepts Demonstrated
